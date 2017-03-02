@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RefreshLayout">
+        <attr name="header_height" format="dimension"/>
+        <attr name="footer_height" format="dimension"/>
+    </declare-styleable>
+</resources>
