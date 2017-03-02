@@ -5,22 +5,22 @@
     android:gravity="center">
     <ImageView
         android:id="@+id/iv_arrow"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
+        android:layout_width="@dimen/refresh_arrow_height"
+        android:layout_height="@dimen/refresh_arrow_height"
         android:src="@mipmap/ic_arrow"/>
 
     <ImageView
         android:id="@+id/iv_loading"
         android:visibility="gone"
-        android:layout_width="34dp"
-        android:layout_height="34dp"
+        android:layout_width="@dimen/refresh_loading_height"
+        android:layout_height="@dimen/refresh_loading_height"
         android:src="@drawable/anim_loading_view"/>
 
     <TextView
         android:id="@+id/tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
-        android:textSize="14sp"
-        android:text="下拉刷新"/>
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:textSize="@dimen/refresh_text_size"
+        android:text="@string/pull_down_refresh"/>
 </LinearLayout>

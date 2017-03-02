@@ -1,11 +1,10 @@
-package com.fxx.refreshlayout;
+package com.fxx.refreshlayout.view;
 
 import android.view.View;
 
 /**
- * Created by lcodecore on 2016/10/1.
+ * 头部视图接口
  */
-
 public interface IHeaderView {
     View getView();
 

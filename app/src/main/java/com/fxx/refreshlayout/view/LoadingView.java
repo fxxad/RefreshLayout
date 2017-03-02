@@ -1,4 +1,4 @@
-package com.fxx.refreshlayout;
+package com.fxx.refreshlayout.view;
 
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
@@ -8,11 +8,13 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 
+import com.fxx.refreshlayout.R;
+import com.fxx.refreshlayout.util.DensityUtil;
+
 
 /**
- * Created by lcodecore on 2016/10/3.
+ * footer加载视图
  */
-
 public class LoadingView extends ImageView implements IBottomView {
     public LoadingView(Context context) {
         this(context, null);

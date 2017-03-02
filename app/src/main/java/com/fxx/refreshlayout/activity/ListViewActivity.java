@@ -1,16 +1,22 @@
-package com.fxx.refreshlayout;
+package com.fxx.refreshlayout.activity;
 
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import com.fxx.refreshlayout.view.IPullListener;
+import com.fxx.refreshlayout.R;
+import com.fxx.refreshlayout.view.RefreshLayout;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends AppCompatActivity implements IPullListener{
+public class ListViewActivity extends AppCompatActivity implements IPullListener, AdapterView.OnItemClickListener{
     /**
      * view
      */
@@ -26,13 +32,14 @@ public class MainActivity extends AppCompatActivity implements IPullListener{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_list_view);
         initView();
         initData();
     }
 
     private void initView(){
         mLvMy= (ListView) findViewById(R.id.lv_my);
+        mLvMy.setOnItemClickListener(this);
         mRefreshLayout = (RefreshLayout) findViewById(R.id.my_refresh);
         mRefreshLayout.setPullListener(this);
     }
@@ -42,7 +49,7 @@ public class MainActivity extends AppCompatActivity implements IPullListener{
         for(int i=0;i<20;i++){
             mStrs.add("item "+i);
         }
-        mAdapter=new ArrayAdapter<>(MainActivity.this,
+        mAdapter=new ArrayAdapter<>(ListViewActivity.this,
                 android.R.layout.simple_list_item_1, mStrs);
         mLvMy.setAdapter(mAdapter);
     }
@@ -67,5 +74,10 @@ public class MainActivity extends AppCompatActivity implements IPullListener{
                 mRefreshLayout.stopLoadMore();
             }
         },3000);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        finish();
     }
 }

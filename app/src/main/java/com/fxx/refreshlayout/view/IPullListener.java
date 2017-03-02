@@ -1,4 +1,4 @@
-package com.fxx.refreshlayout;
+package com.fxx.refreshlayout.view;
 
 /**
  * Created by mc on 2017/2/28.

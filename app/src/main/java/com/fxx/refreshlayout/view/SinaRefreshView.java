@@ -1,4 +1,4 @@
-package com.fxx.refreshlayout;
+package com.fxx.refreshlayout.view;
 
 import android.content.Context;
 import android.graphics.drawable.AnimationDrawable;
@@ -10,16 +10,24 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.fxx.refreshlayout.R;
+
 
 /**
- * Created by lcodecore on 2016/10/2.
+ * 仿新浪下拉刷新视图
  */
-
 public class SinaRefreshView extends FrameLayout implements IHeaderView {
 
-    private ImageView refreshArrow;
+    /**
+     * UI
+     */
+    private ImageView mRefreshArrow;
     private ImageView loadingView;
     private TextView refreshTextView;
+
+    private String pullDownStr = "下拉刷新";
+    private String releaseRefreshStr = "释放更新";
+    private String refreshingStr = "正在刷新";
 
     public SinaRefreshView(Context context) {
         this(context, null);
@@ -34,39 +42,16 @@ public class SinaRefreshView extends FrameLayout implements IHeaderView {
         init();
     }
 
+    /**
+     * 初始化view
+     */
     private void init() {
         View rootView = View.inflate(getContext(), R.layout.view_sinaheader, null);
-        refreshArrow = (ImageView) rootView.findViewById(R.id.iv_arrow);
+        mRefreshArrow = (ImageView) rootView.findViewById(R.id.iv_arrow);
         refreshTextView = (TextView) rootView.findViewById(R.id.tv);
         loadingView = (ImageView) rootView.findViewById(R.id.iv_loading);
         addView(rootView);
-
     }
-
-    public void setArrowResource(@DrawableRes int resId) {
-        refreshArrow.setImageResource(resId);
-    }
-
-    public void setTextColor(@ColorInt int color) {
-        refreshTextView.setTextColor(color);
-    }
-
-    public void setPullDownStr(String pullDownStr) {
-        this.pullDownStr = pullDownStr;
-    }
-
-    public void setReleaseRefreshStr(String releaseRefreshStr) {
-        this.releaseRefreshStr = releaseRefreshStr;
-    }
-
-    public void setRefreshingStr(String refreshingStr) {
-        this.refreshingStr = refreshingStr;
-    }
-
-    private String pullDownStr = "下拉刷新";
-    private String releaseRefreshStr = "释放更新";
-    private String refreshingStr = "正在刷新";
-
 
     @Override
     public View getView() {
@@ -77,13 +62,13 @@ public class SinaRefreshView extends FrameLayout implements IHeaderView {
     public void onPullingDown(float fraction, float maxHeadHeight, float headHeight) {
         if (fraction < 1f) {
             refreshTextView.setText(pullDownStr);
-            refreshArrow.setRotation(0);
+            mRefreshArrow.setRotation(0);
         }
 
         if (fraction > 1f) {
             refreshTextView.setText(releaseRefreshStr);
 //            refreshArrow.setRotation(fraction * headHeight / maxHeadHeight * 180);
-            refreshArrow.setRotation(180);
+            mRefreshArrow.setRotation(180);
         }
     }
 
@@ -92,18 +77,23 @@ public class SinaRefreshView extends FrameLayout implements IHeaderView {
         if (fraction < 1f) {
             refreshTextView.setText(pullDownStr);
 //            refreshArrow.setRotation(fraction * headHeight / maxHeadHeight * 180);
-            refreshArrow.setRotation(0);
-            if (refreshArrow.getVisibility() == GONE) {
-                refreshArrow.setVisibility(VISIBLE);
+            mRefreshArrow.setRotation(0);
+            if (mRefreshArrow.getVisibility() == GONE) {
+                mRefreshArrow.setVisibility(VISIBLE);
                 loadingView.setVisibility(GONE);
             }
         }
     }
 
+    /**
+     * 开始加载动画
+     * @param maxHeadHeight
+     * @param headHeight
+     */
     @Override
     public void startAnim(float maxHeadHeight, float headHeight) {
         refreshTextView.setText(refreshingStr);
-        refreshArrow.setVisibility(GONE);
+        mRefreshArrow.setVisibility(GONE);
         loadingView.setVisibility(VISIBLE);
         ((AnimationDrawable) loadingView.getDrawable()).start();
     }
@@ -113,10 +103,54 @@ public class SinaRefreshView extends FrameLayout implements IHeaderView {
         listener.onAnimEnd();
     }
 
+    /**
+     * 重置
+     */
     @Override
     public void reset() {
-        refreshArrow.setVisibility(VISIBLE);
+        mRefreshArrow.setVisibility(VISIBLE);
         loadingView.setVisibility(GONE);
         refreshTextView.setText(pullDownStr);
     }
+
+    /**
+     * 设置箭头资源
+     * @param resId 箭头资源
+     */
+    public void setArrowResource(@DrawableRes int resId) {
+        mRefreshArrow.setImageResource(resId);
+    }
+
+    /**
+     * 设置文字颜色
+     * @param color 文字颜色
+     */
+    public void setTextColor(@ColorInt int color) {
+        refreshTextView.setTextColor(color);
+    }
+
+    /**
+     * 设置下拉准备过程的文字
+     * @param pullDownStr 下拉准备的文字
+     */
+    public void setPullDownStr(String pullDownStr) {
+        this.pullDownStr = pullDownStr;
+    }
+
+    /**
+     * 设置下拉完成的文字
+     * @param releaseRefreshStr 下拉完成的文字
+     */
+    public void setReleaseRefreshStr(String releaseRefreshStr) {
+        this.releaseRefreshStr = releaseRefreshStr;
+    }
+
+    /**
+     * 设置刷新过程文字
+     * @param refreshingStr 刷新过程文字
+     */
+    public void setRefreshingStr(String refreshingStr) {
+        this.refreshingStr = refreshingStr;
+    }
+
 }

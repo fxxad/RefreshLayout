@@ -1,4 +1,4 @@
-package com.fxx.refreshlayout;
+package com.fxx.refreshlayout.util;
 
 import android.content.Context;
 

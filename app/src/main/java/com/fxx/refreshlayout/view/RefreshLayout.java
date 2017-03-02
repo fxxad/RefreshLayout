@@ -1,4 +1,4 @@
-package com.fxx.refreshlayout;
+package com.fxx.refreshlayout.view;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+
+import com.fxx.refreshlayout.R;
+import com.fxx.refreshlayout.util.DensityUtil;
 
 
 /**

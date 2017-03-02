@@ -1,9 +1,10 @@
-package com.fxx.refreshlayout;
+package com.fxx.refreshlayout.view;
+
+
 
 /**
- * Created by lcodecore on 2016/11/26.
+ * 动画结束监听接口
  */
-
 public interface OnAnimEndListener {
 
     public void onAnimEnd();

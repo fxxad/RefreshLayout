@@ -5,20 +5,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:gravity="center"
     tools:context="com.fxx.refreshlayout.activity.MainActivity">
 
 
+    <com.fxx.refreshlayout.view.RefreshLayout
+        android:id="@+id/my_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/bt_list"
-        android:text="@string/listview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-
-    <Button
-        android:id="@+id/bt_recycler"
-        android:text="@string/recyclerview"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <ListView
+            android:id="@+id/lv_my"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </com.fxx.refreshlayout.view.RefreshLayout>
 </LinearLayout>
